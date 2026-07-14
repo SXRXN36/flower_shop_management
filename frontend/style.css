@@ -259,3 +259,21 @@ margin:8px 0;
 margin-top:10px;
 
 }
+.box{
+    cursor:pointer;
+}
+
+.box hr{
+    border:1px solid #ffd1dc;
+    margin:10px 0;
+}
+
+.box p{
+    margin:6px 0;
+    font-size:15px;
+}
+
+.box button{
+    margin-top:10px;
+    width:100%;
+}
