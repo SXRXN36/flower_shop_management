@@ -5,6 +5,8 @@ const cors = require("cors");
 
 const db = require("./config/db");
 const flowerRoutes = require("./routes/flowerRoutes");
+const customerRoutes = require("./routes/customerRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 const app = express();
 
@@ -42,7 +44,8 @@ app.get("/test-db", async (req, res) => {
 
 // Flower API
 app.use("/api/flowers", flowerRoutes);
-
+app.use("/api/customers", customerRoutes);
+app.use("/api/orders",orderRoutes);
 
 // Start Server
 app.listen(process.env.PORT || 3000, () => {

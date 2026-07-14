@@ -1,97 +1,178 @@
-let flowers = JSON.parse(localStorage.getItem("flowers")) || [];
+const API_URL = "http://172.29.61.26:3000/api/flowers";
 
-function saveData() {
-    localStorage.setItem("flowers", JSON.stringify(flowers));
-}
+let flowers = [];
 
-function showFlowers() {
 
-    const table = document.getElementById("flowerTable");
-    table.innerHTML = "";
+// โหลดข้อมูลจาก API
 
-    flowers.forEach((flower, index) => {
+async function loadFlowers(){
 
-        table.innerHTML += `
-        <tr>
-            <td>${index + 1}</td>
-            <td>🌸 ${flower.name}</td>
-            <td>${flower.price} บาท</td>
-            <td>${flower.stock}</td>
-            <td>
-                <button class="edit" onclick="editFlower(${index})">✏️</button>
-                <button class="delete" onclick="deleteFlower(${index})">🗑️</button>
-            </td>
-        </tr>
-        `;
+    try{
 
-    });
+        const res = await fetch(API_URL);
 
-}
+        flowers = await res.json();
 
-function addFlower() {
-
-    const name = document.getElementById("flowerName").value.trim();
-    const price = document.getElementById("flowerPrice").value;
-    const stock = document.getElementById("flowerStock").value;
-
-    if (name === "" || price === "" || stock === "") {
-        alert("🌼 กรุณากรอกข้อมูลให้ครบ");
-        return;
-    }
-
-    flowers.push({
-        name: name,
-        price: price,
-        stock: stock
-    });
-
-    saveData();
-    showFlowers();
-
-    document.getElementById("flowerName").value = "";
-    document.getElementById("flowerPrice").value = "";
-    document.getElementById("flowerStock").value = "";
-
-    alert("🌸 เพิ่มข้อมูลสำเร็จ");
-}
-
-function deleteFlower(index) {
-
-    if (confirm("ต้องการลบดอกไม้นี้ใช่หรือไม่?")) {
-
-        flowers.splice(index, 1);
-
-        saveData();
         showFlowers();
 
+    }catch(error){
+
+        console.error(error);
+
+        alert("เชื่อมต่อ API ไม่ได้");
+
     }
 
 }
 
-function editFlower(index) {
 
-    const flower = flowers[index];
+// แสดงข้อมูล
 
-    const newName = prompt("ชื่อดอกไม้", flower.name);
-    if (newName === null) return;
+function showFlowers(){
 
-    const newPrice = prompt("ราคา", flower.price);
-    if (newPrice === null) return;
+    const container = document.getElementById("flowerTable");
 
-    const newStock = prompt("จำนวน", flower.stock);
-    if (newStock === null) return;
+    container.innerHTML = "";
 
-    flowers[index] = {
-        name: newName,
-        price: newPrice,
-        stock: newStock
-    };
 
-    saveData();
-    showFlowers();
+    flowers.forEach((flower,index)=>{
 
-    alert("✏️ แก้ไขข้อมูลเรียบร้อย");
+
+        container.innerHTML += `
+
+        <div class="flower-card">
+
+            <h3>
+                🌸 ${flower.name}
+            </h3>
+
+
+            <p>
+                💰 ราคา ${flower.price} บาท
+            </p>
+
+
+            <p>
+                📦 คงเหลือ ${flower.stock}
+            </p>
+
+
+            <button 
+            class="delete"
+            onclick="deleteFlower(${index})">
+
+                🗑️ ลบ
+
+            </button>
+
+
+        </div>
+
+        `;
+
+
+    });
 
 }
 
-showFlowers();
+
+
+// เพิ่มดอกไม้
+
+async function addFlower(){
+
+
+    const name =
+    document.getElementById("flowerName").value;
+
+
+    const price =
+    document.getElementById("flowerPrice").value;
+
+
+    const stock =
+    document.getElementById("flowerStock").value;
+
+
+
+    if(name==="" || price==="" || stock===""){
+
+        alert("กรุณากรอกข้อมูลให้ครบ");
+
+        return;
+
+    }
+
+
+
+    await fetch(API_URL,{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+
+        body:JSON.stringify({
+
+            name:name,
+
+            price:Number(price),
+
+            stock:Number(stock)
+
+        })
+
+    });
+
+
+
+    alert("เพิ่มดอกไม้สำเร็จ");
+
+
+    document.getElementById("flowerName").value="";
+    document.getElementById("flowerPrice").value="";
+    document.getElementById("flowerStock").value="";
+
+
+    loadFlowers();
+
+}
+
+
+
+
+// ลบดอกไม้
+
+async function deleteFlower(index){
+
+
+    const id = flowers[index].id;
+
+
+    if(confirm("ต้องการลบดอกไม้นี้ใช่หรือไม่?")){
+
+
+        await fetch(
+
+            `${API_URL}/${id}`,
+
+            {
+
+                method:"DELETE"
+
+            }
+
+        );
+
+
+        loadFlowers();
+
+    }
+
+}
+
+
+
+loadFlowers();

@@ -1,101 +1,149 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>จัดการดอกไม้</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
+
 <nav>
+
     <h2>🌸 Blossom Flower Shop</h2>
 
+
     <ul>
-        <li><a href="index.html">🏠 หน้าแรก</a></li>
-        <li><a href="flowers.html">🌹 ดอกไม้</a></li>
-        <li><a href="categories.html">🌼 หมวดหมู่</a></li>
-        <li><a href="customers.html">👤 ลูกค้า</a></li>
-        <li><a href="orders.html">🛒 ออเดอร์</a></li>
+
+        <li>
+            <a href="index.html">
+                🏠 หน้าแรก
+            </a>
+        </li>
+
+
+        <li>
+            <a href="flowers.html">
+                🌹 ดอกไม้
+            </a>
+        </li>
+
+
+        <li>
+            <a href="categories.html">
+                🌼 หมวดหมู่
+            </a>
+        </li>
+
+
+        <li>
+            <a href="customers.html">
+                👤 ลูกค้า
+            </a>
+        </li>
+
+
+        <li>
+            <a href="orders.html">
+                🛒 ออเดอร์
+            </a>
+        </li>
+
+
     </ul>
+
+
 </nav>
+
+
+
+
 
 <div class="container">
 
+
+
+    <!-- เพิ่มดอกไม้ -->
+
     <div class="card">
 
-        <h2>🌹 จัดการข้อมูลดอกไม้</h2>
 
-        <input type="text" id="flowerName" placeholder="ชื่อดอกไม้">
+        <h2>
+            🌹 จัดการข้อมูลดอกไม้
+        </h2>
 
-        <input type="number" id="flowerPrice" placeholder="ราคา (บาท)">
 
-        <input type="number" id="flowerStock" placeholder="จำนวนคงเหลือ">
 
-        <button class="save" onclick="addFlower()">
+        <input 
+        type="text"
+        id="flowerName"
+        placeholder="ชื่อดอกไม้"
+        >
+
+
+
+        <input 
+        type="number"
+        id="flowerPrice"
+        placeholder="ราคา (บาท)"
+        >
+
+
+
+        <input 
+        type="number"
+        id="flowerStock"
+        placeholder="จำนวนคงเหลือ"
+        >
+
+
+
+        <button 
+        class="save"
+        onclick="addFlower()">
+
             ➕ เพิ่มดอกไม้
+
         </button>
 
+
+
     </div>
 
-    <div class="card">
 
-<h2>🌸 ดอกไม้แนะนำของร้าน 🌸</h2>
 
-<div class="flower-grid">
 
-    <div class="flower-card">
-        <img src="images/rose.jpg">
-        <h3>🌹 กุหลาบแดง</h3>
-        <p>💰 ราคา 250 บาท</p>
-        <p>📦 คงเหลือ 20 ช่อ</p>
-        <p>❤️ สื่อถึงความรัก</p>
-
-        <button class="edit">✏️ แก้ไข</button>
-        <button class="delete">🗑️ ลบ</button>
-    </div>
-
-    <div class="flower-card">
-        <img src="images/tulip.jpg">
-        <h3>🌷 ทิวลิป</h3>
-        <p>💰 ราคา 180 บาท</p>
-        <p>📦 คงเหลือ 18 ช่อ</p>
-        <p>💕 ความสุขและความอบอุ่น</p>
-
-        <button class="edit">✏️ แก้ไข</button>
-        <button class="delete">🗑️ ลบ</button>
-    </div>
-
-    <div class="flower-card">
-        <img src="images/sunflower.jpg">
-        <h3>🌻 ทานตะวัน</h3>
-        <p>💰 ราคา 150 บาท</p>
-        <p>📦 คงเหลือ 35 ช่อ</p>
-        <p>☀️ ความสดใส</p>
-
-        <button class="edit">✏️ แก้ไข</button>
-        <button class="delete">🗑️ ลบ</button>
-    </div>
-
-    <div class="flower-card">
-        <img src="images/lily.jpg">
-        <h3>🤍 ลิลลี่</h3>
-        <p>💰 ราคา 220 บาท</p>
-        <p>📦 คงเหลือ 15 ช่อ</p>
-        <p>✨ ความบริสุทธิ์</p>
-
-        <button class="edit">✏️ แก้ไข</button>
-        <button class="delete">🗑️ ลบ</button>
-    </div>
 
 </div>
 
-</div>
+<div class="card">
+
+    <h2>
+        🌸 รายการดอกไม้จากฐานข้อมูล 🌸
+    </h2>
+
+
+    <div class="flower-grid" id="flowerTable">
+
+    </div>
+
 
 </div>
+
+
 
 <script src="flower.js"></script>
 
+
 </body>
+
+
 </html>
