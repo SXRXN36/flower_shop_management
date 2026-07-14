@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-
+const flowerRoutes = require("./routes/flowerRoutes");
 const app = express();
 
 app.use(cors());
@@ -15,6 +15,8 @@ app.get("/", (req, res) => {
         message: "Flower Shop API Working"
     });
 });
+
+app.use("/api/flowers", flowerRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log("Server Running");
