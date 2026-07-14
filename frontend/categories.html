@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จัดการหมวดหมู่</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <h2>🌸 Blossom Flower Shop</h2>
+
+    <ul>
+        <li><a href="index.html">🏠 หน้าแรก</a></li>
+        <li><a href="flowers.html">🌹 ดอกไม้</a></li>
+        <li><a href="categories.html">🌼 หมวดหมู่</a></li>
+        <li><a href="customers.html">👤 ลูกค้า</a></li>
+        <li><a href="orders.html">🛒 ออเดอร์</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>🌼 จัดการหมวดหมู่ดอกไม้</h2>
+
+        <input type="text" id="categoryName" placeholder="ชื่อหมวดหมู่">
+
+        <button class="save" onclick="addCategory()">
+            ➕ เพิ่มหมวดหมู่
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>🌼 หมวดหมู่</th>
+                    <th>⚙️ จัดการ</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="categoryTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="category.js"></script>
+
+</body>
+</html>

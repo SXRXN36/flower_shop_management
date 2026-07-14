@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จัดการลูกค้า</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+    <h2>🌸 Blossom Flower Shop</h2>
+
+    <ul>
+        <li><a href="index.html">🏠 หน้าแรก</a></li>
+        <li><a href="flowers.html">🌹 ดอกไม้</a></li>
+        <li><a href="categories.html">🌼 หมวดหมู่</a></li>
+        <li><a href="customers.html">👤 ลูกค้า</a></li>
+        <li><a href="orders.html">🛒 ออเดอร์</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>👤 จัดการข้อมูลลูกค้า</h2>
+
+        <input type="text" id="customerName" placeholder="ชื่อลูกค้า">
+
+        <input type="text" id="customerPhone" placeholder="เบอร์โทรศัพท์">
+
+        <button class="save" onclick="addCustomer()">
+            ➕ เพิ่มลูกค้า
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>👤 ชื่อ</th>
+                    <th>📞 เบอร์โทร</th>
+                    <th>⚙️ จัดการ</th>
+                </tr>
+            </thead>
+
+            <tbody id="customerTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="customer.js"></script>
+
+</body>
+</html>
