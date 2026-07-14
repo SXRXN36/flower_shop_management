@@ -1,76 +1,95 @@
-const Flower = require("../models/flowerModel");
+const flowerModel = require("../models/flowerModel");
 
-exports.getFlowers = (req, res) => {
-    Flower.getAllFlowers((err, results) => {
-        if (err) {
-            return res.status(500).json(err);
-        }
 
-        res.json(results);
-    });
+// GET ALL
+exports.getFlowers = async (req, res) => {
+    try {
+
+        const data = await flowerModel.getAllFlowers();
+
+        res.json(data);
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
 };
 
-exports.addFlower = (req, res) => {
 
-    const flower = {
-        name: req.body.name,
-        price: req.body.price,
-        stock: req.body.stock
-    };
+// POST ADD
+exports.addFlower = async (req, res) => {
+    try {
 
-    Flower.addFlower(flower, (err, result) => {
+        const result = await flowerModel.addFlower(req.body);
 
-        if (err) {
-            return res.status(500).json(err);
-        }
-
-        res.status(201).json({
-            message: "เพิ่มดอกไม้สำเร็จ",
+        res.json({
+            message: "Flower added successfully",
             id: result.insertId
         });
 
-    });
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
+};
+
+
+// PUT UPDATE
+exports.updateFlower = async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        await flowerModel.updateFlower(
+            id,
+            req.body
+        );
+
+        res.json({
+            message: "Flower updated successfully"
+        });
+
+
+    } catch(error){
+
+        res.status(500).json({
+            error:error.message
+        });
+
+    }
 
 };
 
-exports.updateFlower = (req, res) => {
 
-    const id = req.params.id;
+// DELETE
+exports.deleteFlower = async (req,res)=>{
 
-    const flower = {
-        name: req.body.name,
-        price: req.body.price,
-        stock: req.body.stock
-    };
+    try {
 
-    Flower.updateFlower(id, flower, (err, result) => {
+        const {id}=req.params;
 
-        if (err) {
-            return res.status(500).json(err);
-        }
+
+        await flowerModel.deleteFlower(id);
+
 
         res.json({
-            message: "แก้ไขข้อมูลสำเร็จ"
+            message:"Flower deleted successfully"
         });
 
-    });
 
-};
+    }catch(error){
 
-exports.deleteFlower = (req, res) => {
-
-    const id = req.params.id;
-
-    Flower.deleteFlower(id, (err, result) => {
-
-        if (err) {
-            return res.status(500).json(err);
-        }
-
-        res.json({
-            message: "ลบข้อมูลสำเร็จ"
+        res.status(500).json({
+            error:error.message
         });
 
-    });
+    }
 
 };
